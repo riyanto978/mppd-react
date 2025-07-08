@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "MPPD Generator",
+    "version": "1.0.0",
+    "description": "A Chrome extension built with Vite and React",
+    "action": {},
+    "permissions": [
+        "scripting",
+        "tabs",
+        "storage"
+    ],
+    "host_permissions": [
+        "http://localhost:5173/",
+        "https://admin.mppdigital.go.id/*",
+        "https://sisdmk.kemkes.go.id/pencarian/*"
+    ],
+    "content_scripts": [
+        {
+            "js": [
+                "src/content.ts"
+            ],
+            "matches": [
+                "https://admin.mppdigital.go.id/*",
+                "https://sisdmk.kemkes.go.id/pencarian/*"
+            ]
+        }
+    ],
+    "background": {
+        "service_worker": "src/background.ts",
+        "type": "module"
+    },
+    "options_page": "options.html",
+    "commands": {
+        "do-script": {
+            "suggested_key": {
+                "default": "Alt+B"
+            },
+            "description": "Inject a script on the page"
+        },
+        "write-script": {
+            "suggested_key": {
+                "default": "Alt+N"
+            },
+            "description": "Inject a script on the page"
+        }
+    }
+}
